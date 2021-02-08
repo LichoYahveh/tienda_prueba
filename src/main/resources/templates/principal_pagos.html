@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla_base :: encabezado">
+</head>
+<!-- CSS only -->
+<link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script src="http://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<body>
+	<header th:replace="plantilla_base :: barraNavegacion"></header>
+	<br><br><br><br>
+
+	<main class="container">
+		
+		<div class="row g-2">
+		
+          <hr class="my-4">
+
+          <h4 class="mb-3">PAGAR</h4>
+
+          <div class="my-3 row">
+            <div class="col-md-6">
+	            <div class="form-check">
+	              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+	              <label class="form-check-label" for="credit">Tarjeta de crédito</label>
+	            </div>
+	            <div class="form-check">
+	              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+	              <label class="form-check-label" for="debit">Tarjeta de débito</label>
+	            </div>
+	            <div class="form-check">
+	              <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+	              <label class="form-check-label" for="paypal">PayPal</label>
+	            </div>
+			 </div>
+            <div class="col-md-6">
+	            <div class="form-check">
+	            	<h4 class="mb-3" th:text="${total}"></h4>
+	            </div>
+			 </div>
+          </div>
+
+          <div class="row gy-3">
+            <div class="col-md-6">
+              <label for="cc-name" class="form-label">NOMBRE DEL PROPIETARIO</label>
+              <input type="text" class="form-control" id="cc-name" placeholder="" required>
+              <small class="text-muted">solo el nombre que se ve en la tarjeta</small>
+              <div class="invalid-feedback">
+                Name on card is required
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="cc-number" class="form-label">NÚMERO DE LA TARJETA</label>
+              <input type="text" class="form-control" id="cc-number" placeholder="" required>
+              <div class="invalid-feedback">
+                Credit card number is required
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="cc-expiration" class="form-label">FECHA DE CADUCIDAD</label>
+              <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+              <div class="invalid-feedback">
+                Expiration date required
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="cc-cvv" class="form-label">CÓDIGO DE SEGURIDAD</label>
+              <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+              <div class="invalid-feedback">
+                Security code required
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+          <button class="w-100 btn btn-primary btn-lg" type="submit">PAGAR</button>
+
+    	</div>
+	</main>
+	
+	
+</body>
+
+<script th:src="@{/producto/principal.js}"></script>
+</html>

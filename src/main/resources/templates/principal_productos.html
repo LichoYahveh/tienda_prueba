@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla_base :: encabezado">
+</head>
+<!-- CSS only -->
+<link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script src="http://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<body>
+	<header th:replace="plantilla_base :: barraNavegacion"></header>
+	<br><br><br><br>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-3">
+				<div class="btn-group-vertical">
+					<!-- Button trigger modal -->
+				  	<button type="button" class="btn btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdrop">NUEVO PRODUCTO</button>
+				</div>
+			</div>
+			<div class="col-9">
+				<table id="tblUsuarios" class="display" style="width:100%">
+			        <thead>
+			            <tr>
+			                <th>Código</th>
+			                <th>Nombre</th>
+			                <th>Cantidad</th>
+			                <th>PVP</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			        </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">PRODUCTO</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+		<form id="formProductoNuevo" method="POST" th:action="@{/producto/save}" autocomplete="off">
+		  <div class="mb-3 row">
+		    <label for="staticEmail" class="col-sm-2 col-form-label">CÓDIGO</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="codigo" value="">
+		    </div>
+		  </div>
+		  <div class="mb-3 row">
+		    <label for="inputPassword" class="col-sm-2 col-form-label">NOMBRE</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="nombre">
+		    </div>
+		  </div>
+		  <div class="mb-3 row">
+		    <label for="inputPassword" class="col-sm-2 col-form-label">CANTIDAD</label>
+		    <div class="col-sm-10">
+		      <input type="number" class="form-control" id="cantidad">
+		    </div>
+		  </div>
+		  <div class="mb-3 row">
+		    <label for="inputPassword" class="col-sm-2 col-form-label">PVP</label>
+		    <div class="col-sm-10">
+		      <input type="number" class="form-control" id="pvp">
+		    </div>
+		  </div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalProducto">CERRAR</button>
+        <button type="button" class="btn btn-primary" id="modalProductoGuardar">GUARDAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+	
+</body>
+
+<script th:src="@{/producto/principal.js}"></script>
+</html>

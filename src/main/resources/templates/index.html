@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla_base :: encabezado"></head>
+<body>
+	<header th:replace="plantilla_base :: barraNavegacion"></header>
+	<br><br><br><br>
+	<main class="container">
+
+		<div class="row g-3">
+			<div class="col-md-5 col-lg-4 order-md-last">
+				<div sec:authorize="isAuthenticated()">
+					<h4 class="d-flex justify-content-between align-items-center mb-3">
+						<span class="text-muted">Tu carrito</span>
+						<span class="badge bg-secondary rounded-pill" id="cantidadItems">0</span>
+					</h4>
+					<ul class="list-group mb-3" id="listadoCompra">
+						<li class="list-group-item d-flex justify-content-between lh-sm">
+							<div>
+								<h6 class="my-0">PRODUCTOS</h6>
+							</div>
+						</li>
+					</ul>
+	
+					<form method="POST" th:action="@{/pedidos/index}" class="card p-2">
+						<ul class="list-group mb-3">
+							<li class="list-group-item d-flex justify-content-between">
+							<span>Total (USD)</span> <strong id="totalListado">$0</strong></li>
+						</ul>
+						<input type="hidden" id="valorPago" name="valorPago" value="0"/>
+						<button type="submit" class="btn btn-secondary btn-lg">PAGAR</button>
+					</form>
+				</div>
+			</div>
+
+			<div class="col-md-7 col-lg-8">
+				<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+	
+					<div class="col"  th:each="producto : ${productos}">
+						<div class="card mb-4 shadow-sm">
+							<div class="card-header">
+								<h4 class="my-0 fw-normal" th:text="${producto.nombre}"></h4>
+							</div>
+							<div class="card-body">
+								<h1 class="card-title pricing-card-title" th:text="${'$'+producto.pvp}">
+									<small class='text-muted' th:text="${'c/u'}"></small>
+								</h1>
+								<ul class="list-unstyled mt-3 mb-4">
+									<li>VER +</li>
+								</ul>
+								<button sec:authorize="isAuthenticated()" type="button" class="w-100 btn btn-lg btn-outline-primary" th:attr="onclick=|addCar('${producto.codigo}', '${producto.nombre}', ${producto.pvp})|" >Añadir</button>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</main>
+
+
+
+	<!-- 
+<main class="container">
+
+	<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+	
+		<div class="col"  th:each="producto : ${productos}">
+			<div class="card mb-4 shadow-sm">
+				<div class="card-header">
+					<h4 class="my-0 fw-normal" th:text="${producto.nombre}"></h4>
+				</div>
+				<div class="card-body">
+					<h1 class="card-title pricing-card-title" th:text="${'$'+producto.pvp}">
+						<small class='text-muted' th:text="${'c/u'}"></small>
+					</h1>
+					<ul class="list-unstyled mt-3 mb-4">
+						<li>. . . . . .</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+</main>
+
+-->
+
+
+<script th:src="@{/index/carrito.js}"></script>
+</body>
+</html>
